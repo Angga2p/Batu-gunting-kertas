@@ -1,0 +1,81 @@
+!doctype html>
+<html lang="en"> 
+ <head> 
+  <meta charset="UTF-8"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <title>Batu Gunting Kertas</title> 
+  <link rel="stylesheet" href="style.css"> 
+ </head> 
+ <body> 
+  <div class="container"> 
+   <h1>Batu Gunting Kertas</h1> 
+   <p>Pilih salah satu:</p> 
+   <div class="choices"> <button onclick="playGame('batu')">🪨 Batu</button> <button onclick="playGame('gunting')">✂️ Gunting</button> <button onclick="playGame('kertas')">📄 Kertas</button> 
+   </div> 
+   <div class="result"> 
+    <h2 id="resultText"></h2> 
+   </div> 
+  </div> 
+  <script src="script.js"></script> 
+ </body>
+</html>
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background-color: #f4f4f9;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 500px;
+  margin: 50px auto;
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  color: #333;
+}
+
+.choices button {
+  padding: 10px 20px;
+  margin: 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #007BFF;
+  color: white;
+  transition: background-color 0.3s ease;
+}
+
+.choices button:hover {
+  background-color: #0056b3;
+}
+
+.result {
+  margin-top: 20px;
+  font-size: 20px;
+  color: #333;
+}
+function playGame(playerChoice) {
+  const choices = ['batu', 'gunting', 'kertas'];
+  const computerChoice = choices[Math.floor(Math.random() * choices.length)];
+
+  let result = '';
+  if (playerChoice === computerChoice) {
+    result = 'Seri!';
+  } else if (
+    (playerChoice === 'batu' && computerChoice === 'gunting') ||
+    (playerChoice === 'gunting' && computerChoice === 'kertas') ||
+    (playerChoice === 'kertas' && computerChoice === 'batu')
+  ) {
+    result = `Kamu Menang! (Kamu: ${playerChoice}, Komputer: ${computerChoice})`;
+  } else {
+    result = `Kamu Kalah! (Kamu: ${playerChoice}, Komputer: ${computerChoice})`;
+  }
+
+  document.getElementById('resultText').innerText = result;
